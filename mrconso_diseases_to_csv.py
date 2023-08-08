@@ -42,7 +42,7 @@ action = int(input("Choice: "))
 
 if (action == 1):
     file_name = "MRCONSO_Diseases.csv"
-    unique_df.to_csv(file_name, index=False)
+    unique_df.to_csv(file_name, index=False, header = None)
     print(f"Diseases have been exported to {file_name}")
 elif (action == 2):
     random_disease = unique_df['DISEASES'].sample(n=1).iloc[0]
