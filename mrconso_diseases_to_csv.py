@@ -5,7 +5,7 @@ import pandas as pd
 import csv
 
 #Prompt user for path to MRCONSO File
-file_path = input("Please enter the path to the MRREL file: ")
+file_path = input("Please enter the path to the MRCONSO file: ")
 
 # Imports MRCONSO Table and adds column names
 column_names = ['CUI', 'LAT', 'TS', 'LUI', 'STT', 'SUI', 'ISPREF', 'AUI', 'SAUI', 'SCUI', 'SDUI', 'SAB', 'TTY', 'CODE', 'STR', 'SRL', 'SUPPRESS', 'CVF']
@@ -42,7 +42,8 @@ action = int(input("Choice: "))
 
 if (action == 1):
     file_name = "MRCONSO_Diseases.csv"
-    unique_df.to_csv(file_name, index=False, header = None)
+    csv_header = "Diseases"
+    unique_df.to_csv(file_name, index=False, header = csv_header)
     print(f"Diseases have been exported to {file_name}")
 elif (action == 2):
     random_disease = unique_df['DISEASES'].sample(n=1).iloc[0]
