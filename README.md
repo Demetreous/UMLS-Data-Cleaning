@@ -8,4 +8,5 @@ This is done with the end goal to streamline and automate diverse query generati
 The main content of this repository can be found in the 'Python Scripts' folder, which contains scripts that are an extension of the .ipynb code in the 'Notebook Code' folder.
 
 The MRCONSO script extracts all the unique names of drugs and/or diseases found in the file, along with giving the user the option to get a single drug/disease name either from a specified index or at random.
+
 The MRREL script gives the user the option to extract all the information for a specific relationship in the file, or to extract all of the information for each of the relationships in the entire file. 
