@@ -34,9 +34,15 @@ while (action != 3):
 
     #Go through all the unique relationships and store all the rows for each one in a CSV file
     elif (action == 2):
+        #Isolate unique relationships
         unique_rela = rrf_data['RELA'].unique()
+        unique_rela_count = len(unique_rela)
+        
+        #Loop to extract each of the unique relationships
         print("Now extracting relationships. This may take a while...")
+        count = 0
         for rela in unique_rela:
+            count+= 1
             # Filter the DataFrame for the current unique name
             filtered_data = rrf_data[rrf_data['RELA'] == rela]
             
@@ -45,6 +51,7 @@ while (action != 3):
             filtered_data.to_csv(file_name, index=False, mode = 'w')
             
             print(f"CSV file '{file_name}' has been saved in the current directory.")
+            print(f"{count} out of {unique_rela_count} relationships have been extracted...")
             
     #Break from loop and end program
     elif (action == 3):

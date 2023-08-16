@@ -44,6 +44,10 @@ unique_values_drugs = drug_df['STR'].unique()
 unique_disease_df = pd.DataFrame({'DISEASES': unique_values_diseases})
 unique_drug_df = pd.DataFrame({'DRUGS': unique_values_drugs})
 
+#Get size of dataframe
+total_rows_diseases = unique_disease_df.shape[0]
+total_rows_drugs = unique_drug_df.shape[0]
+
 #Prompt user to choose program function 
 action = 0
 #Loop to keep presenting user with menu
@@ -81,7 +85,7 @@ while (action != 7):
     elif (action == 3):
         #turn df into dict
         disease_dict = unique_disease_df['DISEASES'].to_dict()
-        indx = int(input("Enter a number in the range 0-305349: "))
+        indx = int(input(f"Enter a number in the range 0-{total_rows_diseases - 1}: "))
         print(disease_dict[indx])
         
     #Export DF to a csv file
@@ -100,7 +104,7 @@ while (action != 7):
     elif (action == 6):
         #turn df into dict
         drug_dict = unique_drug_df['DRUGS'].to_dict()
-        indx = int(input("Enter a number in the range 0-303046: "))
+        indx = int(input(f"Enter a number in the range 0-{total_rows_drugs - 1}: "))
         print(drug_dict[indx])
     
     #Break from loop and end program
