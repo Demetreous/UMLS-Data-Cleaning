@@ -1,11 +1,12 @@
 # Author: Demetreous Stillman, Zergio Ruvalcaba
-
+#This program takes in an RRF file 
 # Libraries
 import pandas as pd
 import csv
 
 #Prompt user for path to MRCONSO File
 file_path = input("Please enter the path to the MRREL file: ")
+print("Now attempting to process the file. This may take some time...")
 
 # Imports MRCONSO Table and adds column names
 column_names = ['CUI', 'LAT', 'TS', 'LUI', 'STT', 'SUI', 'ISPREF', 'AUI', 'SAUI', 'SCUI', 'SDUI', 'SAB', 'TTY', 'CODE', 'STR', 'SRL', 'SUPPRESS', 'CVF']
@@ -29,28 +30,34 @@ unique_values = disease_df['STR'].unique()
 # Create a new dataframe with the unique values
 unique_df = pd.DataFrame({'DISEASES': unique_values})
 
-
-#turn df into dict
-disease_dict = unique_df['DISEASES'].to_dict()
-
 #Prompt user to choose program function 
-print("\nChoose an option. Option 1 will extract all disease names and store them in a CSV file. \nOption 2 returns a random disease name. \nOption 3 asks for an index input and returns disease with corresponding index.")
-print("\t1. Output Unique Disease Names to CSV")
-print("\t2. Return Random Disease Name")
-print("\t3. Return Disease with Specified Index")
-action = int(input("Choice: "))
+action = 0
+while (action != 4):
+    print("\nChoose an option. Option 1 will extract all disease names and store them in a CSV file. \nOption 2 returns a random disease name. \nOption 3 asks for an index input and returns disease with corresponding index.")
+    print("\t1. Output Unique Disease Names to CSV")
+    print("\t2. Return Random Disease Name")
+    print("\t3. Return Disease with Specified Index")
+    print("\t4. Quit")
+    action = int(input("Choice: "))
 
-if (action == 1):
-    file_name = "MRCONSO_Diseases.csv"
-    unique_df.to_csv(file_name, index=False, header = None)
-    print(f"Diseases have been exported to {file_name}")
-elif (action == 2):
-    random_disease = unique_df['DISEASES'].sample(n=1).iloc[0]
-    print(random_disease)
-        
-elif (action == 3):
-    indx = int(input("Enter a number in the range 0-305349: "))
-    print(disease_dict[indx])
+    if (action == 1):
+        file_name = "MRCONSO_Diseases.csv"
+        unique_df.to_csv(file_name, index=False, header = None)
+        print(f"Diseases have been exported to {file_name}")
+    elif (action == 2):
+        random_disease = unique_df['DISEASES'].sample(n=1).iloc[0]
+        print(random_disease)
+            
+    elif (action == 3):
+        #turn df into dict
+        disease_dict = unique_df['DISEASES'].to_dict()
+        indx = int(input("Enter a number in the range 0-305349: "))
+        print(disease_dict[indx])
     
-else:
-    print("Not a valid option. Goodbye!")
+    elif (action == 4):
+        print("Goodbye!!")
+        break
+        
+    else:
+        print("Not a valid option. Try again!")
+        action = 0
